@@ -1,7 +1,9 @@
 let selectedRole = "student";
 
 
-// ================= LOGIN =================
+// =========================
+// OPEN LOGIN
+// =========================
 
 function showLogin(role) {
 
@@ -10,23 +12,33 @@ function showLogin(role) {
     const modal = document.getElementById("loginModal");
     const title = document.getElementById("loginTitle");
 
-    const titles = {
-        student: "🎓 Student Login",
-        teacher: "👨‍🏫 Teacher Login",
-        br: "🏢 BR Login",
-        admin: "⚙️ Admin Login"
-    };
+    if (role === "student") {
+        title.innerText = "🎓 Student Login";
+    }
 
-    title.innerText = titles[role];
+    if (role === "teacher") {
+        title.innerText = "👨‍🏫 Teacher Login";
+    }
+
+    if (role === "br") {
+        title.innerText = "🏢 BR Login";
+    }
+
+    if (role === "admin") {
+        title.innerText = "⚙️ Admin Login";
+    }
 
     document.getElementById("username").value = "";
     document.getElementById("password").value = "";
-
     document.getElementById("loginMessage").innerText = "";
 
     modal.style.display = "flex";
 }
 
+
+// =========================
+// CLOSE LOGIN
+// =========================
 
 function closeLogin() {
 
@@ -35,7 +47,9 @@ function closeLogin() {
 }
 
 
-// ================= LOGIN USER =================
+// =========================
+// LOGIN
+// =========================
 
 function loginUser() {
 
@@ -45,23 +59,24 @@ function loginUser() {
     const password =
         document.getElementById("password").value.trim();
 
+    const message =
+        document.getElementById("loginMessage");
+
+
+    // Check empty fields
+
     if (username === "" || password === "") {
 
-        document.getElementById("loginMessage").innerText =
+        message.innerText =
             "Please enter Login ID and Password.";
 
         return;
     }
 
 
-    // Close login window
+    // Close login popup
 
     document.getElementById("loginModal").style.display = "none";
-
-
-    // Hide homepage
-
-    document.querySelector("body").style.overflow = "hidden";
 
 
     // Show dashboard
@@ -72,18 +87,30 @@ function loginUser() {
     dashboard.style.display = "block";
 
 
-    // Create dashboard according to role
+    // Allow scrolling
 
-    createDashboard(selectedRole, username);
+    document.body.style.overflow = "auto";
 
 
-    window.scrollTo(0, 0);
+    // Change dashboard
+
+    showDashboard(role = selectedRole, username);
+
+
+    // Move to top
+
+    window.scrollTo({
+        top: 0,
+        behavior: "instant"
+    });
 }
 
 
-// ================= CREATE DASHBOARD =================
+// =========================
+// DASHBOARD
+// =========================
 
-function createDashboard(role, username) {
+function showDashboard(role, username) {
 
     const dashboard =
         document.getElementById("dashboard");
@@ -91,308 +118,137 @@ function createDashboard(role, username) {
 
     let title = "";
     let subtitle = "";
-    let cards = [];
+    let modules = [];
 
 
-    // ================= STUDENT =================
+    // STUDENT
 
     if (role === "student") {
 
-        title = "Student Dashboard";
+        title = "🎓 Student Dashboard";
 
         subtitle =
             "Welcome " + username +
-            " • Manage your academic progress";
+            " | Your Academic Portal";
 
-        cards = [
+        modules = [
 
-            {
-                icon: "👤",
-                title: "My Profile",
-                text: "View your personal and academic details."
-            },
-
-            {
-                icon: "🕒",
-                title: "Attendance",
-                text: "Check your daily and monthly attendance."
-            },
-
-            {
-                icon: "📚",
-                title: "Study Material",
-                text: "Access notes, PDFs and chapter material."
-            },
-
-            {
-                icon: "📝",
-                title: "DPP / Homework",
-                text: "View daily practice papers and homework."
-            },
-
-            {
-                icon: "📋",
-                title: "Tests",
-                text: "View upcoming and previous tests."
-            },
-
-            {
-                icon: "🏆",
-                title: "Results",
-                text: "Check your marks and performance."
-            },
-
-            {
-                icon: "💰",
-                title: "Fees",
-                text: "View fees, dues and payment history."
-            },
-
-            {
-                icon: "📢",
-                title: "Notices",
-                text: "Read important institute announcements."
-            }
+            ["👤", "My Profile"],
+            ["🕒", "Attendance"],
+            ["📚", "Study Material"],
+            ["📝", "DPP / Homework"],
+            ["📋", "Tests"],
+            ["🏆", "Results"],
+            ["💰", "Fees"],
+            ["📢", "Notices"]
 
         ];
     }
 
 
-    // ================= TEACHER =================
+    // TEACHER
 
-    if (role === "teacher") {
+    else if (role === "teacher") {
 
-        title = "Teacher Dashboard";
+        title = "👨‍🏫 Teacher Dashboard";
 
         subtitle =
             "Welcome " + username +
-            " • Manage your classes";
+            " | Teacher Portal";
 
-        cards = [
+        modules = [
 
-            {
-                icon: "👤",
-                title: "My Profile",
-                text: "View and update your teacher profile."
-            },
-
-            {
-                icon: "🏫",
-                title: "My Classes",
-                text: "View your assigned classes and batches."
-            },
-
-            {
-                icon: "🕒",
-                title: "Attendance",
-                text: "Mark and manage student attendance."
-            },
-
-            {
-                icon: "📊",
-                title: "Enter Marks",
-                text: "Enter student test and examination marks."
-            },
-
-            {
-                icon: "📚",
-                title: "Upload DPP",
-                text: "Upload daily practice papers."
-            },
-
-            {
-                icon: "📄",
-                title: "Worksheets",
-                text: "Upload worksheets and study material."
-            },
-
-            {
-                icon: "📝",
-                title: "Tests",
-                text: "Create and manage class tests."
-            },
-
-            {
-                icon: "📈",
-                title: "Performance",
-                text: "Monitor student performance."
-            }
+            ["👤", "My Profile"],
+            ["🏫", "My Classes"],
+            ["🕒", "Attendance"],
+            ["📊", "Enter Marks"],
+            ["📚", "Upload DPP"],
+            ["📄", "Worksheets"],
+            ["📝", "Tests"],
+            ["📈", "Performance"]
 
         ];
     }
 
 
-    // ================= BR =================
+    // BR
 
-    if (role === "br") {
+    else if (role === "br") {
 
-        title = "BR Dashboard";
+        title = "🏢 BR Dashboard";
 
         subtitle =
             "Welcome " + username +
-            " • Manage your branch";
+            " | Branch Management";
 
-        cards = [
+        modules = [
 
-            {
-                icon: "📞",
-                title: "Enquiries",
-                text: "Manage new student enquiries."
-            },
-
-            {
-                icon: "🎓",
-                title: "Admissions",
-                text: "Manage new admissions."
-            },
-
-            {
-                icon: "👥",
-                title: "Students",
-                text: "View and manage branch students."
-            },
-
-            {
-                icon: "💰",
-                title: "Fees",
-                text: "Manage fees and pending payments."
-            },
-
-            {
-                icon: "🕒",
-                title: "Attendance",
-                text: "Monitor student attendance."
-            },
-
-            {
-                icon: "📅",
-                title: "Timetable",
-                text: "Manage classes and schedules."
-            },
-
-            {
-                icon: "📝",
-                title: "Tests",
-                text: "Manage branch test schedules."
-            },
-
-            {
-                icon: "📊",
-                title: "Reports",
-                text: "View branch performance reports."
-            }
+            ["📞", "Enquiries"],
+            ["🎓", "Admissions"],
+            ["👥", "Students"],
+            ["💰", "Fees"],
+            ["🕒", "Attendance"],
+            ["📅", "Timetable"],
+            ["📝", "Tests"],
+            ["📊", "Reports"]
 
         ];
     }
 
 
-    // ================= ADMIN =================
+    // ADMIN
 
-    if (role === "admin") {
+    else if (role === "admin") {
 
-        title = "Admin Dashboard";
+        title = "⚙️ Admin Dashboard";
 
         subtitle =
             "Welcome " + username +
-            " • Complete Knowledge 360 Management";
+            " | Knowledge 360 Administration";
 
-        cards = [
+        modules = [
 
-            {
-                icon: "🎓",
-                title: "Students",
-                text: "Add, edit and manage all students."
-            },
-
-            {
-                icon: "👨‍🏫",
-                title: "Teachers",
-                text: "Manage teachers and their classes."
-            },
-
-            {
-                icon: "🏢",
-                title: "BR Staff",
-                text: "Manage branch representatives."
-            },
-
-            {
-                icon: "🏫",
-                title: "Branches",
-                text: "Manage all Knowledge 360 branches."
-            },
-
-            {
-                icon: "📚",
-                title: "Classes & Batches",
-                text: "Manage classes, subjects and batches."
-            },
-
-            {
-                icon: "🕒",
-                title: "Attendance",
-                text: "Monitor institute-wide attendance."
-            },
-
-            {
-                icon: "📝",
-                title: "Tests & Results",
-                text: "Manage tests and student results."
-            },
-
-            {
-                icon: "💰",
-                title: "Fees",
-                text: "Manage fees and payment records."
-            },
-
-            {
-                icon: "📢",
-                title: "Notices",
-                text: "Create institute-wide announcements."
-            },
-
-            {
-                icon: "📊",
-                title: "Reports",
-                text: "View complete institute reports."
-            },
-
-            {
-                icon: "⚙️",
-                title: "Settings",
-                text: "Manage website and system settings."
-            }
+            ["🎓", "Students"],
+            ["👨‍🏫", "Teachers"],
+            ["🏢", "BR Staff"],
+            ["🏫", "Branches"],
+            ["📚", "Classes & Batches"],
+            ["🕒", "Attendance"],
+            ["📝", "Tests & Results"],
+            ["💰", "Fees"],
+            ["📢", "Notices"],
+            ["📊", "Reports"],
+            ["⚙️", "Settings"]
 
         ];
     }
 
 
-    // ================= BUILD DASHBOARD =================
+    // Create module cards
 
-    let cardsHTML = "";
+    let cards = "";
 
 
-    cards.forEach(function(card) {
+    for (let i = 0; i < modules.length; i++) {
 
-        cardsHTML += `
+        cards += `
 
             <div class="dashboard-card">
 
                 <div class="dashboard-card-icon">
-                    ${card.icon}
+                    ${modules[i][0]}
                 </div>
 
                 <h3>
-                    ${card.title}
+                    ${modules[i][1]}
                 </h3>
 
                 <p>
-                    ${card.text}
+                    Open ${modules[i][1]}
                 </p>
 
                 <button
-                    onclick="openModule('${card.title}')">
+                    onclick="moduleMessage('${modules[i][1]}')">
 
                     Open →
 
@@ -401,9 +257,10 @@ function createDashboard(role, username) {
             </div>
 
         `;
+    }
 
-    });
 
+    // Put dashboard content
 
     dashboard.innerHTML = `
 
@@ -449,7 +306,7 @@ function createDashboard(role, username) {
 
             <div class="dashboard-grid">
 
-                ${cardsHTML}
+                ${cards}
 
             </div>
 
@@ -459,19 +316,23 @@ function createDashboard(role, username) {
 }
 
 
-// ================= MODULE =================
+// =========================
+// MODULE BUTTON
+// =========================
 
-function openModule(module) {
+function moduleMessage(module) {
 
     alert(
         module +
-        " module will be connected to the database in the next stage."
+        " will be connected to the Knowledge 360 database."
     );
 
 }
 
 
-// ================= LOGOUT =================
+// =========================
+// LOGOUT
+// =========================
 
 function logout() {
 
@@ -480,14 +341,17 @@ function logout() {
 
     dashboard.style.display = "none";
 
-    document.querySelector("body").style.overflow = "auto";
-
-    window.scrollTo(0, 0);
+    window.scrollTo({
+        top: 0,
+        behavior: "instant"
+    });
 
 }
 
 
-// ================= CLOSE MODAL =================
+// =========================
+// CLOSE POPUP WHEN OUTSIDE
+// =========================
 
 window.onclick = function(event) {
 
