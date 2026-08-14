@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Teacher Dashboard | Knowledge 360</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body {
+    background: #f5f8fc;
+}
+
+.portal-header {
+
+    background: white;
+
+    padding: 18px 6%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    border-bottom: 1px solid #ddd;
+
+}
+
+.portal-header h2 {
+    color: #123d73;
+}
+
+.portal-header small {
+    display: block;
+    color: #627d98;
+    margin-top: 3px;
+}
+
+.logout {
+
+    background: #123d73;
+
+    color: white;
+
+    border: none;
+
+    padding: 10px 18px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+}
+
+.main {
+
+    padding: 40px 7%;
+
+}
+
+.welcome {
+
+    margin-bottom: 30px;
+
+}
+
+.welcome h1 {
+
+    color: #102a43;
+
+}
+
+.welcome p {
+
+    color: #627d98;
+
+}
+
+.info-box {
+
+    background: #eaf2ff;
+
+    padding: 18px;
+
+    border-radius: 12px;
+
+    margin-bottom: 30px;
+
+    color: #123d73;
+
+}
+
+.grid {
+
+    display: grid;
+
+    grid-template-columns:
+    repeat(4, 1fr);
+
+    gap: 20px;
+
+}
+
+.card {
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 18px;
+
+    border: 1px solid #e1e8f0;
+
+}
+
+.icon {
+
+    font-size: 34px;
+
+    margin-bottom: 15px;
+
+}
+
+.card h3 {
+
+    color: #123d73;
+
+    margin-bottom: 8px;
+
+}
+
+.card p {
+
+    color: #627d98;
+
+    line-height: 1.5;
+
+}
+
+.card button {
+
+    margin-top: 15px;
+
+    width: 100%;
+
+    padding: 10px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #123d73;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+@media(max-width:900px) {
+
+    .grid {
+
+        grid-template-columns:
+        repeat(2, 1fr);
+
+    }
+
+}
+
+
+@media(max-width:500px) {
+
+    .grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .main {
+
+        padding: 30px 18px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="portal-header">
+
+    <div>
+
+        <h2>
+            KNOWLEDGE 360
+        </h2>
+
+        <small>
+            👨‍🏫 TEACHER PORTAL
+        </small>
+
+    </div>
+
+
+    <button
+        class="logout"
+        onclick="window.location.href='index.html'">
+
+        Logout
+
+    </button>
+
+</header>
+
+
+<main class="main">
+
+
+<div class="welcome">
+
+<h1>
+    👨‍🏫 Teacher Dashboard
+</h1>
+
+<p>
+    Manage your classes, students and academic activities.
+</p>
+
+</div>
+
+
+<div class="info-box">
+
+    🏢 <strong>Your Branch:</strong>
+    This will be automatically assigned by BR/Admin.
+
+    <br><br>
+
+    👥 <strong>Your Students:</strong>
+    Only students belonging to your assigned classes
+    will be visible to you.
+
+</div>
+
+
+<div class="grid">
+
+
+<div class="card">
+
+<div class="icon">👤</div>
+
+<h3>My Profile</h3>
+
+<p>
+View your personal and professional details.
+</p>
+
+<button onclick="comingSoon('My Profile')">
+Open
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">🏫</div>
+
+<h3>My Classes</h3>
+
+<p>
+View your assigned classes and batches.
+</p>
+
+<button onclick="comingSoon('My Classes')">
+Open
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">🎓</div>
+
+<h3>My Students</h3>
+
+<p>
+View only students assigned to your classes.
+</p>
+
+<button onclick="comingSoon('My Students')">
+Open
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">🕒</div>
+
+<h3>Attendance</h3>
+
+<p>
+Mark and manage attendance of your students.
+</p>
+
+<button onclick="comingSoon('Attendance')">
+Open
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">📊</div>
+
+<h3>Enter Marks</h3>
+
+<p>
+Enter test and examination marks.
+</p>
+
+<button onclick="comingSoon('Enter Marks')">
+Open
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">📚</div>
+
+<h3>Upload DPP</h3>
+
+<p>
+Upload daily practice papers for your classes.
+</p>
+
+<button onclick="comingSoon('Upload DPP')">
+Open
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">📄</div>
+
+<h3>Worksheets</h3>
+
+<p>
+Upload worksheets and study material.
+</p>
+
+<button onclick="comingSoon('Worksheets')">
+Open
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">📝</div>
+
+<h3>Tests</h3>
+
+<p>
+Create and manage tests for your classes.
+</p>
+
+<button onclick="comingSoon('Tests')">
+Open
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">📈</div>
+
+<h3>Performance</h3>
+
+<p>
+Monitor performance of your students.
+</p>
+
+<button onclick="comingSoon('Performance')">
+Open
+</button>
+
+</div>
+
+
+</div>
+
+</main>
+
+
+<script>
+
+function comingSoon(module) {
+
+    alert(
+        module +
+        " will be connected to the Knowledge 360 database."
+    );
+
+}
+
+</script>
+
+
+</body>
+
+</html>
