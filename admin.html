@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard | Knowledge 360</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body {
+    background: #f5f8fc;
+}
+
+.header {
+
+    background: #092b52;
+
+    color: white;
+
+    padding: 18px 6%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+.header small {
+
+    display: block;
+
+    color: #c9d8e8;
+
+}
+
+.logout {
+
+    background: white;
+
+    color: #123d73;
+
+    border: none;
+
+    padding: 10px 18px;
+
+    border-radius: 8px;
+
+    font-weight: bold;
+
+}
+
+.main {
+
+    padding: 40px 7%;
+
+}
+
+.welcome {
+
+    margin-bottom: 25px;
+
+}
+
+.welcome h1 {
+
+    color: #102a43;
+
+}
+
+.welcome p {
+
+    color: #627d98;
+
+}
+
+.admin-box {
+
+    background: #092b52;
+
+    color: white;
+
+    padding: 22px;
+
+    border-radius: 14px;
+
+    margin-bottom: 30px;
+
+}
+
+.grid {
+
+    display: grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap: 20px;
+
+}
+
+.card {
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 18px;
+
+    border: 1px solid #e1e8f0;
+
+}
+
+.icon {
+
+    font-size: 34px;
+
+    margin-bottom: 15px;
+
+}
+
+.card h3 {
+
+    color: #123d73;
+
+}
+
+.card p {
+
+    color: #627d98;
+
+    line-height: 1.5;
+
+}
+
+.card button {
+
+    margin-top: 15px;
+
+    width: 100%;
+
+    padding: 10px;
+
+    background: #123d73;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 8px;
+
+}
+
+
+@media(max-width:900px) {
+
+    .grid {
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+}
+
+
+@media(max-width:500px) {
+
+    .grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .main {
+
+        padding: 30px 18px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+<div>
+
+<h2>
+KNOWLEDGE 360
+</h2>
+
+<small>
+👑 ADMINISTRATOR PORTAL
+</small>
+
+</div>
+
+
+<button
+class="logout"
+onclick="window.location.href='index.html'">
+
+Logout
+
+</button>
+
+</header>
+
+
+<main class="main">
+
+
+<div class="welcome">
+
+<h1>
+👑 Admin Dashboard
+</h1>
+
+<p>
+Complete control of Knowledge 360.
+</p>
+
+</div>
+
+
+<div class="admin-box">
+
+<strong>🔐 ADMIN ACCESS</strong>
+
+<br><br>
+
+Admin has the highest permission level.
+
+<br>
+
+Admin can manage all branches,
+BRs, teachers, students, academic records,
+fees and system settings.
+
+<br><br>
+
+<strong>
+ADMIN > BR > TEACHER > STUDENT
+</strong>
+
+</div>
+
+
+<div class="grid">
+
+
+<div class="card">
+
+<div class="icon">🏢</div>
+
+<h3>Branches</h3>
+
+<p>
+Create and manage all Knowledge 360 branches.
+</p>
+
+<button onclick="comingSoon('Branches')">
+Open
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">👑</div>
+
+<h3>BR Management</h3>
+
+<p>
+Create BR accounts and assign branches.
+</p>
+
+<button onclick="comingSoon('BR Management')">
+Open
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">👨‍🏫</div>
+
+<h3>Teachers</h3>
+
+<p>
+Manage teachers and assign them to branches.
+</p>
+
+<button onclick="comingSoon('Teachers')">
+Open
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">🎓</div>
+
+<h3>Students</h3>
+
+<p>
+Manage all students across every branch.
+</p>
+
+<button onclick="comingSoon('Students')">
+Open
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">🏫</div>
+
+<h3>Classes & Batches</h3>
+
+<p>
+Manage classes, subjects and batches.
+</p>
+
+<button onclick="comingSoon('Classes & Batches')">
+Open
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">🕒</div>
+
+<h3>Attendance</h3>
+
+<p>
+View institute-wide attendance.
+</p>
+
+<button onclick="comingSoon('Attendance')">
+Open
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">📝</div>
+
+<h3>Tests & Results</h3>
+
+<p>
+Manage tests, marks and results.
+</p>
+
+<button onclick="comingSoon('Tests & Results')">
+Open
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">💰</div>
+
+<h3>Fees</h3>
+
+<p>
+Manage fees and payment records.
+</p>
+
+<button onclick="comingSoon('Fees')">
+Open
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">📚</div>
+
+<h3>Study Material</h3>
+
+<p>
+Manage DPPs, worksheets and study material.
+</p>
+
+<button onclick="comingSoon('Study Material')">
+Open
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">📢</div>
+
+<h3>Notices</h3>
+
+<p>
+Create institute-wide announcements.
+</p>
+
+<button onclick="comingSoon('Notices')">
+Open
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">📊</div>
+
+<h3>Reports</h3>
+
+<p>
+Generate complete institute reports.
+</p>
+
+<button onclick="comingSoon('Reports')">
+Open
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">⚙️</div>
+
+<h3>System Settings</h3>
+
+<p>
+Manage Knowledge 360 system settings.
+</p>
+
+<button onclick="comingSoon('Settings')">
+Open
+</button>
+
+</div>
+
+
+</div>
+
+</main>
+
+
+<script>
+
+function comingSoon(module) {
+
+alert(
+module +
+" will be connected to the Knowledge 360 database."
+);
+
+}
+
+</script>
+
+
+</body>
+
+</html>
