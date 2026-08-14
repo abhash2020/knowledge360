@@ -59,7 +59,7 @@ function closeLogin() {
 // SUPABASE CONFIGURATION
 // ===============================
 
-const SUPABASE_URL = "PASTE-YOUR-SUPABASE-PROJECT-URL-HERE";
+const SUPABASE_URL = "https://pdkzxwyrlzlzukkrnipt.supabase.co";
 const SUPABASE_KEY = "sb_publishable_u7TKpDrbewwFs-AGEInUJA_c1jV7J_N";
 
 const sb = window.supabase.createClient(
