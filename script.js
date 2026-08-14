@@ -55,7 +55,24 @@ function closeLogin() {
 // LOGIN USER
 // ===============================
 
-function loginUser() {
+// ===============================
+// SUPABASE CONFIGURATION
+// ===============================
+
+const SUPABASE_URL = "PASTE-YOUR-SUPABASE-PROJECT-URL-HERE";
+const SUPABASE_KEY = "PASTE-YOUR-PUBLISHABLE-KEY-HERE";
+
+const sb = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+// ===============================
+// REAL LOGIN
+// ===============================
+
+async function loginUser() {
 
     const usernameElement =
         document.getElementById("username");
@@ -66,14 +83,10 @@ function loginUser() {
     const messageElement =
         document.getElementById("loginMessage");
 
-
     if (!usernameElement || !passwordElement) {
-
         alert("Login fields not found.");
-
         return;
     }
-
 
     const username =
         usernameElement.value.trim();
@@ -82,20 +95,133 @@ function loginUser() {
         passwordElement.value.trim();
 
 
-    // Check empty fields
-
     if (username === "" || password === "") {
 
-        if (messageElement) {
-
-            messageElement.innerText =
-                "Please enter Login ID and Password.";
-
-        }
+        messageElement.innerText =
+            "Please enter Login ID and Password.";
 
         return;
     }
 
+
+    // =========================
+    // ADMIN LOGIN
+    // =========================
+
+    if (selectedRole === "admin") {
+
+        messageElement.innerText =
+            "Checking Admin account...";
+
+
+        const { data, error } =
+            await sb.auth.signInWithPassword({
+                email: username,
+                password: password
+            });
+
+
+        if (error) {
+
+            messageElement.innerText =
+                "Invalid Admin email or password.";
+
+            console.error(error);
+
+            return;
+        }
+
+
+        // Get logged-in user's profile
+
+        const { data: profile, error: profileError } =
+            await sb
+                .from("profiles")
+                .select("full_name, role")
+                .eq("id", data.user.id)
+                .single();
+
+
+        if (profileError || !profile) {
+
+            messageElement.innerText =
+                "Admin profile not found.";
+
+            await sb.auth.signOut();
+
+            return;
+        }
+
+
+        // Check role
+
+        if (profile.role !== "admin") {
+
+            messageElement.innerText =
+                "Access denied. You are not an Admin.";
+
+            await sb.auth.signOut();
+
+            return;
+        }
+
+
+        // Successful Admin login
+
+        messageElement.innerText =
+            "Login successful. Opening Admin Portal...";
+
+
+        setTimeout(function() {
+
+            window.location.href = "admin.html";
+
+        }, 500);
+
+
+        return;
+    }
+
+
+    // =========================
+    // STUDENT
+    // =========================
+
+    if (selectedRole === "student") {
+
+        window.location.href = "student.html";
+
+        return;
+    }
+
+
+    // =========================
+    // TEACHER
+    // =========================
+
+    if (selectedRole === "teacher") {
+
+        window.location.href = "teacher.html";
+
+        return;
+    }
+
+
+    // =========================
+    // BR
+    // =========================
+
+    if (selectedRole === "br") {
+
+        window.location.href = "br.html";
+
+        return;
+    }
+
+
+    messageElement.innerText =
+        "Please select a valid login type.";
+}
 
     // ===============================
     // STUDENT
