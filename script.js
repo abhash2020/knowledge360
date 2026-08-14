@@ -63,8 +63,6 @@ function loginUser() {
         document.getElementById("loginMessage");
 
 
-    // Check empty fields
-
     if (username === "" || password === "") {
 
         message.innerText =
@@ -72,6 +70,26 @@ function loginUser() {
 
         return;
     }
+
+
+    // STUDENT
+
+    if (selectedRole === "student") {
+
+        window.location.href =
+            "student.html";
+
+        return;
+    }
+
+
+    // Other portals for now
+
+    message.innerText =
+        selectedRole.toUpperCase() +
+        " portal will be activated next.";
+
+}
 
 
     // Close login popup
