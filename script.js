@@ -80,23 +80,7 @@ if (selectedRole === "br") {
     window.location.href = "br.html";
 
     return;
-}
-
-
-if (selectedRole === "admin") {
-
-    window.location.href = "admin.html";
-
-    return;
-}
-
-    message.innerText =
-        selectedRole.toUpperCase() +
-        " portal will be activated soon.";
-}
-
-
-window.addEventListener("click", function(event) {
+{
 
     const modal =
         document.getElementById("loginModal");
