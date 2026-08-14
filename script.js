@@ -1,5 +1,10 @@
 let selectedRole = "";
 
+
+// ===============================
+// OPEN LOGIN POPUP
+// ===============================
+
 function showLogin(role) {
 
     selectedRole = role;
@@ -8,26 +13,33 @@ function showLogin(role) {
     const title = document.getElementById("loginTitle");
 
     if (!modal || !title) {
-        alert("Login system error: login popup not found.");
+        alert("Login popup not found.");
         return;
     }
 
     if (role === "student") {
         title.innerText = "🎓 Student Login";
     }
+
     else if (role === "teacher") {
         title.innerText = "👨‍🏫 Teacher Login";
     }
+
     else if (role === "br") {
         title.innerText = "🏢 BR Login";
     }
+
     else if (role === "admin") {
-        title.innerText = "⚙️ Admin Login";
+        title.innerText = "👑 Admin Login";
     }
 
     modal.style.display = "flex";
 }
 
+
+// ===============================
+// CLOSE LOGIN POPUP
+// ===============================
 
 function closeLogin() {
 
@@ -39,26 +51,55 @@ function closeLogin() {
 }
 
 
+// ===============================
+// LOGIN USER
+// ===============================
+
 function loginUser() {
 
-    const username =
-        document.getElementById("username").value.trim();
+    const usernameElement =
+        document.getElementById("username");
 
-    const password =
-        document.getElementById("password").value.trim();
+    const passwordElement =
+        document.getElementById("password");
 
-    const message =
+    const messageElement =
         document.getElementById("loginMessage");
 
 
-    if (username === "" || password === "") {
+    if (!usernameElement || !passwordElement) {
 
-        message.innerText =
-            "Please enter Login ID and Password.";
+        alert("Login fields not found.");
 
         return;
     }
 
+
+    const username =
+        usernameElement.value.trim();
+
+    const password =
+        passwordElement.value.trim();
+
+
+    // Check empty fields
+
+    if (username === "" || password === "") {
+
+        if (messageElement) {
+
+            messageElement.innerText =
+                "Please enter Login ID and Password.";
+
+        }
+
+        return;
+    }
+
+
+    // ===============================
+    // STUDENT
+    // ===============================
 
     if (selectedRole === "student") {
 
@@ -67,26 +108,68 @@ function loginUser() {
         return;
     }
 
-if (selectedRole === "teacher") {
 
-    window.location.href = "teacher.html";
+    // ===============================
+    // TEACHER
+    // ===============================
 
-    return;
+    if (selectedRole === "teacher") {
+
+        window.location.href = "teacher.html";
+
+        return;
+    }
+
+
+    // ===============================
+    // BR
+    // ===============================
+
+    if (selectedRole === "br") {
+
+        window.location.href = "br.html";
+
+        return;
+    }
+
+
+    // ===============================
+    // ADMIN
+    // ===============================
+
+    if (selectedRole === "admin") {
+
+        window.location.href = "admin.html";
+
+        return;
+    }
+
+
+    // Unknown role
+
+    if (messageElement) {
+
+        messageElement.innerText =
+            "Please select a valid login type.";
+
+    }
+
 }
 
 
-if (selectedRole === "br") {
+// ===============================
+// CLOSE POPUP WHEN CLICKING OUTSIDE
+// ===============================
 
-    window.location.href = "br.html";
-
-    return;
-{
+window.addEventListener("click", function(event) {
 
     const modal =
         document.getElementById("loginModal");
 
     if (event.target === modal) {
+
         closeLogin();
+
     }
 
 });
