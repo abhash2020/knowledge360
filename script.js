@@ -94,7 +94,7 @@ function loginUser() {
 
     // Change dashboard
 
-    showDashboard(role = selectedRole, username);
+    showDashboard(selectedRole, username);
 
 
     // Move to top
