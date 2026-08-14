@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Student Dashboard | Knowledge 360</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body {
+    background: #f5f8fc;
+}
+
+.student-header {
+
+    background: white;
+
+    padding: 18px 6%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    border-bottom: 1px solid #ddd;
+
+}
+
+.student-header h2 {
+
+    color: #123d73;
+
+}
+
+.logout {
+
+    background: #123d73;
+
+    color: white;
+
+    border: none;
+
+    padding: 10px 18px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+}
+
+.student-main {
+
+    padding: 40px 7%;
+
+}
+
+.welcome {
+
+    margin-bottom: 30px;
+
+}
+
+.welcome h1 {
+
+    color: #102a43;
+
+}
+
+.welcome p {
+
+    color: #627d98;
+
+}
+
+.student-grid {
+
+    display: grid;
+
+    grid-template-columns:
+    repeat(4, 1fr);
+
+    gap: 20px;
+
+}
+
+.student-card {
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 18px;
+
+    border: 1px solid #e1e8f0;
+
+}
+
+.student-card .icon {
+
+    font-size: 35px;
+
+    margin-bottom: 15px;
+
+}
+
+.student-card h3 {
+
+    color: #123d73;
+
+    margin-bottom: 8px;
+
+}
+
+.student-card p {
+
+    color: #627d98;
+
+    line-height: 1.5;
+
+}
+
+.student-card button {
+
+    margin-top: 15px;
+
+    width: 100%;
+
+    padding: 10px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #123d73;
+
+    color: white;
+
+    font-weight: bold;
+
+}
+
+
+@media(max-width:800px) {
+
+    .student-grid {
+
+        grid-template-columns:
+        repeat(2, 1fr);
+
+    }
+
+}
+
+
+@media(max-width:500px) {
+
+    .student-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="student-header">
+
+    <h2>
+        KNOWLEDGE 360
+    </h2>
+
+    <button
+        class="logout"
+        onclick="window.location.href='index.html'">
+
+        Logout
+
+    </button>
+
+</header>
+
+
+<main class="student-main">
+
+
+<div class="welcome">
+
+<h1>
+    🎓 Student Dashboard
+</h1>
+
+<p>
+    Welcome to your Knowledge 360 Student Portal
+</p>
+
+</div>
+
+
+<div class="student-grid">
+
+
+<div class="student-card">
+
+<div class="icon">
+    👤
+</div>
+
+<h3>
+    My Profile
+</h3>
+
+<p>
+    View your personal and academic information.
+</p>
+
+<button onclick="alert('Profile module coming soon')">
+    Open
+</button>
+
+</div>
+
+
+<div class="student-card">
+
+<div class="icon">
+    🕒
+</div>
+
+<h3>
+    Attendance
+</h3>
+
+<p>
+    Check your daily and monthly attendance.
+</p>
+
+<button onclick="alert('Attendance module coming soon')">
+    Open
+</button>
+
+</div>
+
+
+<div class="student-card">
+
+<div class="icon">
+    📚
+</div>
+
+<h3>
+    Study Material
+</h3>
+
+<p>
+    Access notes, PDFs and chapter material.
+</p>
+
+<button onclick="alert('Study Material module coming soon')">
+    Open
+</button>
+
+</div>
+
+
+<div class="student-card">
+
+<div class="icon">
+    📝
+</div>
+
+<h3>
+    DPP / Homework
+</h3>
+
+<p>
+    View your daily practice papers and homework.
+</p>
+
+<button onclick="alert('DPP module coming soon')">
+    Open
+</button>
+
+</div>
+
+
+<div class="student-card">
+
+<div class="icon">
+    📋
+</div>
+
+<h3>
+    Tests
+</h3>
+
+<p>
+    View upcoming and previous tests.
+</p>
+
+<button onclick="alert('Tests module coming soon')">
+    Open
+</button>
+
+</div>
+
+
+<div class="student-card">
+
+<div class="icon">
+    🏆
+</div>
+
+<h3>
+    Results
+</h3>
+
+<p>
+    Check your marks and examination results.
+</p>
+
+<button onclick="alert('Results module coming soon')">
+    Open
+</button>
+
+</div>
+
+
+<div class="student-card">
+
+<div class="icon">
+    💰
+</div>
+
+<h3>
+    Fees
+</h3>
+
+<p>
+    View your fees and payment history.
+</p>
+
+<button onclick="alert('Fees module coming soon')">
+    Open
+</button>
+
+</div>
+
+
+<div class="student-card">
+
+<div class="icon">
+    📢
+</div>
+
+<h3>
+    Notices
+</h3>
+
+<p>
+    Read important Knowledge 360 announcements.
+</p>
+
+<button onclick="alert('Notices module coming soon')">
+    Open
+</button>
+
+</div>
+
+
+</div>
+
+</main>
+
+</body>
+
+</html>
