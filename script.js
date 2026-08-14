@@ -67,6 +67,28 @@ function loginUser() {
         return;
     }
 
+if (selectedRole === "teacher") {
+
+    window.location.href = "teacher.html";
+
+    return;
+}
+
+
+if (selectedRole === "br") {
+
+    window.location.href = "br.html";
+
+    return;
+}
+
+
+if (selectedRole === "admin") {
+
+    window.location.href = "admin.html";
+
+    return;
+}
 
     message.innerText =
         selectedRole.toUpperCase() +
