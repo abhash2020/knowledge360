@@ -1,4 +1,4 @@
-let selectedRole = "student";
+let selectedRole = "";
 
 function showLogin(role) {
 
@@ -7,25 +7,23 @@ function showLogin(role) {
     const modal = document.getElementById("loginModal");
     const title = document.getElementById("loginTitle");
 
+    if (!modal || !title) {
+        alert("Login system error: login popup not found.");
+        return;
+    }
+
     if (role === "student") {
         title.innerText = "🎓 Student Login";
     }
-
-    if (role === "teacher") {
+    else if (role === "teacher") {
         title.innerText = "👨‍🏫 Teacher Login";
     }
-
-    if (role === "br") {
+    else if (role === "br") {
         title.innerText = "🏢 BR Login";
     }
-
-    if (role === "admin") {
+    else if (role === "admin") {
         title.innerText = "⚙️ Admin Login";
     }
-
-    document.getElementById("username").value = "";
-    document.getElementById("password").value = "";
-    document.getElementById("loginMessage").innerText = "";
 
     modal.style.display = "flex";
 }
@@ -33,8 +31,11 @@ function showLogin(role) {
 
 function closeLogin() {
 
-    document.getElementById("loginModal").style.display = "none";
+    const modal = document.getElementById("loginModal");
 
+    if (modal) {
+        modal.style.display = "none";
+    }
 }
 
 
@@ -69,20 +70,17 @@ function loginUser() {
 
     message.innerText =
         selectedRole.toUpperCase() +
-        " portal will be activated next.";
-
+        " portal will be activated soon.";
 }
 
 
-window.onclick = function(event) {
+window.addEventListener("click", function(event) {
 
     const modal =
         document.getElementById("loginModal");
 
     if (event.target === modal) {
-
         closeLogin();
-
     }
 
-};
+});
