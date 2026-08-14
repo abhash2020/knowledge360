@@ -743,3 +743,148 @@ nav a:hover {
         width: 100%;
     }
 }
+/* ================= NEW DASHBOARD ================= */
+
+.dashboard-card-icon {
+
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #edf4ff;
+
+    border-radius: 15px;
+
+    font-size: 28px;
+
+    margin-bottom: 15px;
+}
+
+
+.dashboard-card button {
+
+    margin-top: 18px;
+
+    width: 100%;
+
+    padding: 10px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #123d73;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.dashboard-card button:hover {
+
+    background: #0c2c55;
+}
+
+
+.logout-button {
+
+    background: #123d73;
+
+    color: white;
+
+    border: none;
+
+    padding: 10px 18px;
+
+    border-radius: 9px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.logout-button:hover {
+
+    background: #0c2c55;
+}
+
+
+.welcome-area {
+
+    margin-bottom: 30px;
+}
+
+
+.welcome-area h1 {
+
+    font-size: 35px;
+
+    color: #102a43;
+
+    margin-bottom: 8px;
+}
+
+
+.welcome-area p {
+
+    color: #627d98;
+
+    font-size: 16px;
+}
+
+
+.dashboard-header small {
+
+    color: #627d98;
+
+    letter-spacing: 1px;
+
+    font-size: 10px;
+}
+
+
+/* Mobile dashboard */
+
+@media(max-width: 600px) {
+
+    .dashboard-content {
+
+        padding: 30px 18px;
+
+    }
+
+    .welcome-area h1 {
+
+        font-size: 28px;
+
+    }
+
+    .dashboard-header {
+
+        padding: 0 18px;
+
+    }
+
+    .dashboard-header h2 {
+
+        font-size: 18px;
+
+    }
+
+    .logout-button {
+
+        padding: 8px 12px;
+
+        font-size: 12px;
+
+    }
+
+}
