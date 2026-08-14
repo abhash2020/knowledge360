@@ -1,9 +1,8 @@
 let selectedRole = "";
 
-
-// ===============================
+// ========================================
 // OPEN LOGIN POPUP
-// ===============================
+// ========================================
 
 function showLogin(role) {
 
@@ -11,6 +10,7 @@ function showLogin(role) {
 
     const modal = document.getElementById("loginModal");
     const title = document.getElementById("loginTitle");
+    const message = document.getElementById("loginMessage");
 
     if (!modal || !title) {
         alert("Login popup not found.");
@@ -20,26 +20,30 @@ function showLogin(role) {
     if (role === "student") {
         title.innerText = "🎓 Student Login";
     }
-
     else if (role === "teacher") {
         title.innerText = "👨‍🏫 Teacher Login";
     }
-
     else if (role === "br") {
         title.innerText = "🏢 BR Login";
     }
-
     else if (role === "admin") {
         title.innerText = "👑 Admin Login";
+    }
+    else {
+        title.innerText = "Knowledge 360 Login";
+    }
+
+    if (message) {
+        message.innerText = "";
     }
 
     modal.style.display = "flex";
 }
 
 
-// ===============================
+// ========================================
 // CLOSE LOGIN POPUP
-// ===============================
+// ========================================
 
 function closeLogin() {
 
@@ -51,26 +55,35 @@ function closeLogin() {
 }
 
 
-// ===============================
-// LOGIN USER
-// ===============================
-
-// ===============================
+// ========================================
 // SUPABASE CONFIGURATION
-// ===============================
+// ========================================
 
-const SUPABASE_URL = "https://pdkzxwyrlzlzukkrnipt.supabase.co";
-const SUPABASE_KEY = "sb_publishable_u7TKpDrbewwFs-AGEInUJA_c1jV7J_N";
+const SUPABASE_URL =
+    "https://pdkzxwyrlzlzukkrnipt.supabase.co";
 
-const sb = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
+const SUPABASE_KEY =
+    "sb_publishable_u7TKpDrbewwFs-AGEInUJA_c1jV7J_N";
 
 
-// ===============================
-// REAL LOGIN
-// ===============================
+// Check Supabase library
+if (!window.supabase) {
+
+    console.error("Supabase library not loaded.");
+
+} else {
+
+    window.sb = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+}
+
+
+// ========================================
+// LOGIN USER
+// ========================================
 
 async function loginUser() {
 
@@ -83,10 +96,14 @@ async function loginUser() {
     const messageElement =
         document.getElementById("loginMessage");
 
+
     if (!usernameElement || !passwordElement) {
+
         alert("Login fields not found.");
+
         return;
     }
+
 
     const username =
         usernameElement.value.trim();
@@ -97,84 +114,148 @@ async function loginUser() {
 
     if (username === "" || password === "") {
 
-        messageElement.innerText =
-            "Please enter Login ID and Password.";
+        if (messageElement) {
+            messageElement.innerText =
+                "Please enter Login ID and Password.";
+        }
 
         return;
     }
 
 
-    // =========================
-    // ADMIN LOGIN
-    // =========================
+    // ========================================
+    // CHECK SUPABASE
+    // ========================================
 
-    if (selectedRole === "admin") {
+    if (!window.sb) {
 
-        messageElement.innerText =
-            "Checking Admin account...";
+        if (messageElement) {
+            messageElement.innerText =
+                "Supabase is not connected. Please refresh the page.";
+        }
 
+        return;
+    }
+
+
+    // ========================================
+    // ADMIN / TEACHER / BR LOGIN
+    // ========================================
+
+    if (
+        selectedRole === "admin" ||
+        selectedRole === "teacher" ||
+        selectedRole === "br"
+    ) {
+
+        if (messageElement) {
+            messageElement.innerText =
+                "Checking login...";
+        }
+
+
+        // Login with Supabase Authentication
 
         const { data, error } =
-            await sb.auth.signInWithPassword({
+            await window.sb.auth.signInWithPassword({
+
                 email: username,
                 password: password
+
             });
 
 
+        // Login failed
+
         if (error) {
 
-            messageElement.innerText =
-                "Invalid Admin email or password.";
+            console.error("Login error:", error);
 
-            console.error(error);
+            if (messageElement) {
+                messageElement.innerText =
+                    "Invalid Login ID or Password.";
+            }
 
             return;
         }
 
 
-        // Get logged-in user's profile
+        // ========================================
+        // GET USER PROFILE
+        // ========================================
 
         const { data: profile, error: profileError } =
-            await sb
+            await window.sb
                 .from("profiles")
-                .select("full_name, role")
+                .select("full_name, role, branch_id")
                 .eq("id", data.user.id)
                 .single();
 
 
         if (profileError || !profile) {
 
-            messageElement.innerText =
-                "Admin profile not found.";
+            console.error(
+                "Profile error:",
+                profileError
+            );
 
-            await sb.auth.signOut();
+            if (messageElement) {
+                messageElement.innerText =
+                    "Profile not found. Please contact Admin.";
+            }
 
-            return;
-        }
-
-
-        // Check role
-
-        if (profile.role !== "admin") {
-
-            messageElement.innerText =
-                "Access denied. You are not an Admin.";
-
-            await sb.auth.signOut();
+            await window.sb.auth.signOut();
 
             return;
         }
 
 
-        // Successful Admin login
+        // ========================================
+        // CHECK ROLE
+        // ========================================
 
-        messageElement.innerText =
-            "Login successful. Opening Admin Portal...";
+        if (profile.role !== selectedRole) {
+
+            if (messageElement) {
+                messageElement.innerText =
+                    "Access denied. Wrong login type.";
+            }
+
+            await window.sb.auth.signOut();
+
+            return;
+        }
 
 
-        setTimeout(function() {
+        // ========================================
+        // SUCCESS
+        // ========================================
 
-            window.location.href = "admin.html";
+        if (messageElement) {
+            messageElement.innerText =
+                "Login successful. Opening portal...";
+        }
+
+
+        setTimeout(function () {
+
+            if (selectedRole === "admin") {
+
+                window.location.href = "admin.html";
+
+            }
+
+            else if (selectedRole === "teacher") {
+
+                window.location.href = "teacher.html";
+
+            }
+
+            else if (selectedRole === "br") {
+
+                window.location.href = "br.html";
+
+            }
 
         }, 500);
 
@@ -183,11 +264,15 @@ async function loginUser() {
     }
 
 
-    // =========================
-    // STUDENT
-    // =========================
+    // ========================================
+    // STUDENT LOGIN
+    // ========================================
 
     if (selectedRole === "student") {
+
+        // For now, keep your existing student portal
+        // We will connect student authentication
+        // to Supabase in the next step.
 
         window.location.href = "student.html";
 
@@ -195,83 +280,9 @@ async function loginUser() {
     }
 
 
-    // =========================
-    // TEACHER
-    // =========================
-
-    if (selectedRole === "teacher") {
-
-        window.location.href = "teacher.html";
-
-        return;
-    }
-
-
-    // =========================
-    // BR
-    // =========================
-
-    if (selectedRole === "br") {
-
-        window.location.href = "br.html";
-
-        return;
-    }
-
-
-    messageElement.innerText =
-        "Please select a valid login type.";
-}
-
-    // ===============================
-    // STUDENT
-    // ===============================
-
-    if (selectedRole === "student") {
-
-        window.location.href = "student.html";
-
-        return;
-    }
-
-
-    // ===============================
-    // TEACHER
-    // ===============================
-
-    if (selectedRole === "teacher") {
-
-        window.location.href = "teacher.html";
-
-        return;
-    }
-
-
-    // ===============================
-    // BR
-    // ===============================
-
-    if (selectedRole === "br") {
-
-        window.location.href = "br.html";
-
-        return;
-    }
-
-
-    // ===============================
-    // ADMIN
-    // ===============================
-
-    if (selectedRole === "admin") {
-
-        window.location.href = "admin.html";
-
-        return;
-    }
-
-
-    // Unknown role
+    // ========================================
+    // INVALID ROLE
+    // ========================================
 
     if (messageElement) {
 
@@ -283,11 +294,11 @@ async function loginUser() {
 }
 
 
-// ===============================
+// ========================================
 // CLOSE POPUP WHEN CLICKING OUTSIDE
-// ===============================
+// ========================================
 
-window.addEventListener("click", function(event) {
+window.addEventListener("click", function (event) {
 
     const modal =
         document.getElementById("loginModal");
