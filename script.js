@@ -60,7 +60,7 @@ function closeLogin() {
 // ===============================
 
 const SUPABASE_URL = "PASTE-YOUR-SUPABASE-PROJECT-URL-HERE";
-const SUPABASE_KEY = "PASTE-YOUR-PUBLISHABLE-KEY-HERE";
+const SUPABASE_KEY = "sb_publishable_u7TKpDrbewwFs-AGEInUJA_c1jV7J_N";
 
 const sb = window.supabase.createClient(
     SUPABASE_URL,
