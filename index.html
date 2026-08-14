@@ -380,7 +380,180 @@
     </div>
 
 </div>
+<!-- ================= REGISTRATION MODAL ================= -->
 
+<div id="registrationModal" class="modal">
+
+    <div class="login-box">
+
+        <button class="close"
+                onclick="closeRegistration()">
+            ×
+        </button>
+
+        <div class="login-logo">
+            K
+        </div>
+
+        <h2>Create Knowledge 360 Account</h2>
+
+        <p>
+            New registration will require approval.
+        </p>
+
+
+        <!-- ACCOUNT TYPE -->
+
+        <select id="registerRole"
+                onchange="changeRegistrationForm()">
+
+            <option value="student">
+                🎓 Student
+            </option>
+
+            <option value="teacher">
+                👨‍🏫 Teacher
+            </option>
+
+        </select>
+
+
+        <!-- COMMON DETAILS -->
+
+        <input
+            id="registerName"
+            type="text"
+            placeholder="Full Name">
+
+
+        <input
+            id="registerEmail"
+            type="email"
+            placeholder="Email Address">
+
+
+        <input
+            id="registerMobile"
+            type="tel"
+            placeholder="Mobile Number">
+
+
+        <!-- STUDENT ONLY -->
+
+        <div id="studentRegistrationFields">
+
+            <select id="registerBoard">
+
+                <option value="">
+                    Select Board
+                </option>
+
+                <option value="CBSE">
+                    CBSE
+                </option>
+
+                <option value="ICSE">
+                    ICSE
+                </option>
+
+                <option value="ISC">
+                    ISC
+                </option>
+
+            </select>
+
+
+            <input
+                id="registerClass"
+                type="text"
+                placeholder="Class (e.g. 9, 10, 11, 12)">
+
+
+            <input
+                id="registerTEC"
+                type="text"
+                placeholder="TEC - Teacher Employee Code (Optional)">
+
+            <small>
+                If you were referred by a Knowledge 360 teacher,
+                enter their TEC.
+            </small>
+
+        </div>
+
+
+        <!-- TEACHER ONLY -->
+
+        <div id="teacherRegistrationFields"
+             style="display:none;">
+
+            <input
+                id="registerSubject"
+                type="text"
+                placeholder="Teaching Subject">
+
+
+            <small>
+                Teacher Employee Code will be assigned
+                after Admin approval.
+            </small>
+
+        </div>
+
+
+        <!-- BRANCH -->
+
+        <select id="registerBranch">
+
+            <option value="">
+                Select Branch
+            </option>
+
+            <option value="Jarauli">
+                Jarauli
+            </option>
+
+            <option value="Barra">
+                Barra
+            </option>
+
+            <option value="Tatya Tope Nagar">
+                Tatya Tope Nagar
+            </option>
+
+            <option value="Naubasta Hanspuram">
+                Naubasta Hanspuram
+            </option>
+
+        </select>
+
+
+        <input
+            id="registerPassword"
+            type="password"
+            placeholder="Create Password">
+
+
+        <input
+            id="registerConfirmPassword"
+            type="password"
+            placeholder="Confirm Password">
+
+
+        <button
+            class="login-submit"
+            onclick="registerUser()">
+
+            Submit Registration
+
+        </button>
+
+
+        <div id="registrationMessage"></div>
+
+    </div>
+
+</div>
 
 <!-- ================= DASHBOARD ================= -->
 
